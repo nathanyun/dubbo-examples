@@ -10,3 +10,4 @@ dubbo2.7+zk注册中心案例
 
 因为官方的demo是基于无注册中心的
 我自己通过找资料补齐了带有注册中心案例的demo，方便大家参考。
+不过要学习关于dubbo更多的内容，还是推荐阅读Dubbo官方文档：http://dubbo.apache.org/ 
