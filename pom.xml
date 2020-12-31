@@ -9,11 +9,12 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <packaging>pom</packaging>
     <groupId>com.lb.springboot</groupId>
     <artifactId>springboot-dubbo-zk</artifactId>
     <version>1.0.0</version>
-    <name>springboot-dubbo-zk</name>
+    <packaging>pom</packaging>
+    <name>Demo Dubbo Spring Boot Project</name>
+    <url>https://github.com/yunnasheng/springboot-dubbo-zk</url>
 
     <properties>
         <java.version>1.8</java.version>

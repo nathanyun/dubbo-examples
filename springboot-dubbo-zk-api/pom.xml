@@ -7,6 +7,6 @@
     <artifactId>springboot-dubbo-zk-api</artifactId>
     <version>1.0.0</version>
 
-    <name>springboot-dubbo-zk-api</name>
+    <name>Demo Dubbo Spring Boot :: Api</name>
 
 </project>
