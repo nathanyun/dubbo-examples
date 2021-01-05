@@ -34,7 +34,8 @@ public class ConsumerApp {
     private UserService userService;
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsumerApp.class).close();
+        SpringApplication.run(ConsumerApp.class);
+//                .close();
     }
 
     @Bean
