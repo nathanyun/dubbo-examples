@@ -11,6 +11,7 @@
     <description>公共依赖版本管理</description>
 
     <modules>
+        <module>springboot-dubbo-zk-annotation</module>
         <module>springboot-dubbo-zk-provider</module>
         <module>springboot-dubbo-zk-consumer</module>
         <module>springboot-dubbo-zk-interface</module>
