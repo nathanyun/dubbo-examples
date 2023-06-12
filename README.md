@@ -55,4 +55,14 @@ Mon Jun 12 13:12:30 CST 2023 Receive result ======> Hi, world
 Mon Jun 12 13:12:31 CST 2023 Receive result ======> Hi, world
 ```
 
+## FAQ
+1. 为什么把Dubbo端口配置成-1?
+```text
+设置端口为 -1 表示 dubbo 自动扫描并使用可用端口（从20880开始递增），避免了端口冲突的问题。
+ (扩展:dubbo 默认端口是20880，网络中端口范围：1-65535)
+```
+
+
+
+
 > 要学习关于dubbo更多的内容，推荐阅读Dubbo官方文档 : http://dubbo.apache.org/ 
