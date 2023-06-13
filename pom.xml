@@ -2,41 +2,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.lb.springboot</groupId>
-    <artifactId>springboot-dubbo-zk</artifactId>
+    <groupId>com.lb.dubbo</groupId>
+    <artifactId>dubbo-example</artifactId>
     <version>1.0.0</version>
     <packaging>pom</packaging>
 
-    <name>Demo Dubbo Spring Boot Project</name>
+    <name>Dubbo Project</name>
     <description>公共依赖版本管理</description>
 
     <modules>
-        <module>springboot-dubbo-zk-annotation</module>
-        <module>springboot-dubbo-zk-provider</module>
-        <module>springboot-dubbo-zk-consumer</module>
-        <module>springboot-dubbo-zk-interface</module>
+        <module>dubbo-interface</module>
+        <module>dubbo-zk-bootstrap</module>
+        <module>dubbo-zk-springboot-annotation</module>
+        <module>dubbo-zk-springboot-consumer</module>
+        <module>dubbo-zk-springboot-provider</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
-        <spring-boot.version>2.7.8</spring-boot.version>
         <dubbo.version>3.2.2</dubbo.version>
+        <spring-boot.version>2.7.8</spring-boot.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <skipTests>true</skipTests>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <!-- Spring Boot -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring-boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
             <!-- Dubbo -->
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
@@ -50,7 +42,14 @@
                 <version>3.2.2</version>
                 <type>pom</type>
             </dependency>
-
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
