@@ -55,7 +55,7 @@ public class DubboBootstrapProvider {
         order.setVersion("v1.0.0");
         order.setGroup("qa");
 
-        DubboBootstrap dubboBootstrap = DubboBootstrap.getInstance()
+        DubboBootstrap.getInstance()
                 .application(applicationConfig)//自定义应用名称
                 .registry(registryConfig) // 注册中心配置
                 .configCenter(configCenter)
@@ -64,11 +64,6 @@ public class DubboBootstrapProvider {
                 .service(order)
                 .start()//启动Dubbo
                 .await();//挂起等待, 防止进程退出
-
-        System.out.println("dubboBootstrap = " + dubboBootstrap.isStarted());
-
-        //阻塞主线程(防止进程退出, 需要手动释放)
-        LockSupport.park();
     }
 
 }

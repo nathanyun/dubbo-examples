@@ -9,15 +9,16 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>dubbo-zk-bootstrap</artifactId>
+    <artifactId>dubbo-zk-spring-xml</artifactId>
     <version>1.0.0</version>
 
-    <name>Dubbo :: Bootstrap API</name>
-    <description>Dubbo BootstrapAPI方式的服务</description>
+    <name>Dubbo :: Spring XML</name>
+    <description>Dubbo Spring XML服务</description>
 
     <properties>
         <java.version>1.8</java.version>
         <dubbo.version>3.2.2</dubbo.version>
+        <spring.version>5.3.25</spring.version>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -48,6 +49,12 @@
                     <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <!--spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
         </dependency>
     </dependencies>
 
