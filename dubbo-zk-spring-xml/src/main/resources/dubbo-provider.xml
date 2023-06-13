@@ -13,7 +13,8 @@
     <!-- 注册中心地址 -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
-    <dubbo:provider token="true" port="-1"/>
+    <!--协议 accepts最大连接数,payload请求响应数据包大小限制-->
+    <dubbo:protocol name="dubbo" port="-1" accepts="200" payload="8388608"/>
 
     <!-- 定义实现类对应的 bean -->
     <bean id="greetingsService" class="com.lb.springboot.service.impl.GreetingServiceImpl"/>

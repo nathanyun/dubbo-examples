@@ -3,6 +3,7 @@ package com.lb.springboot;
 import com.lb.springboot.service.GreetingService;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
 public class SpringXMLClientApplication {
@@ -14,10 +15,15 @@ public class SpringXMLClientApplication {
 
         GreetingService service = context.getBean(GreetingService.class);
 
-        String message = service.sayHi("dubbo");
-        System.out.println("Receive message ===> " + message);
+        //每2秒调用1次
+        while (true){
+            try {
+                TimeUnit.SECONDS.sleep(2);
+            } catch (InterruptedException ignored) { }
 
-        //阻塞主线程
-        LockSupport.park();
+            String message = service.sayHi("dubbo");
+            System.out.println("Receive message ===> " + message);
+        }
+        //LockSupport.park();
     }
 }
