@@ -35,21 +35,21 @@
 > 提示: 注意zk地址和端口, 要与项目中注册中心地址端口保持一致
 
 2.获取工程代码
-`git clone https://gitee.com/yunnasheng/springboot-dubbo-zk.git`
+`git clone https://gitee.com/yunnasheng/dubbo-example.git`
 
 3.通过Maven编译项目
 `mvn clean install`
 
-4.启动provider `java -jar springboot-dubbo-zk-provider-1.0.0.jar --server-port=8601`
+4.启动provider
 ```text
 2023-06-12 13:32:07.408  INFO 6600 --- [           main] o.a.d.c.deploy.DefaultModuleDeployer     :  [DUBBO] Dubbo Module[1.1.1] is starting., dubbo version: 3.2.2, current host: 172.19.166.139
-2023-06-12 13:32:07.408  INFO 6600 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](springboot-dubbo-zk-provider) is starting., dubbo version: 3.2.2, current host: 172.19.166.139
+2023-06-12 13:32:07.408  INFO 6600 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](dubbo-zk-springboot-provider) is starting., dubbo version: 3.2.2, current host: 172.19.166.139
 ```
 
 5.启动consumer观察日志
 ```text
 2023-06-12 13:12:26.730  INFO 5107 --- [           main] o.a.d.r.c.m.ServiceInstanceMetadataUtils :  [DUBBO] Start registering instance address to registry., dubbo version: 3.2.2, current host: 172.19.166.139
-2023-06-12 13:12:26.734  INFO 5107 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](springboot-dubbo-zk-consumer) is ready., dubbo version: 3.2.2, current host: 172.19.166.139
+2023-06-12 13:12:26.734  INFO 5107 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](dubbo-zk-springboot-consumer) is ready., dubbo version: 3.2.2, current host: 172.19.166.139
 2023-06-12 13:12:26.738  INFO 5107 --- [           main] com.lb.springboot.ConsumerApplication    : Started ConsumerApplication in 3.106 seconds (JVM running for 3.581)
 Receive result ======> Hi, world
 Mon Jun 12 13:12:27 CST 2023 Receive result ======> Hi, world
