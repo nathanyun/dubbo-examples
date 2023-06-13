@@ -14,7 +14,7 @@ import org.apache.dubbo.config.bootstrap.DubboBootstrap;
 import java.io.IOException;
 import java.util.concurrent.locks.LockSupport;
 
-public class DubboBootstrapProvider {
+public class DubboBootstrapProvider2 {
 
     /**
      * 通过 DubboBootstrap API 可以减少重复配置，更好控制启动过程，支持批量发布/订阅服务接口，还可以更好支持 Dubbo3 的应用级服务发现。
@@ -37,7 +37,7 @@ public class DubboBootstrapProvider {
 
         //应用配置
         ApplicationConfig applicationConfig = new ApplicationConfig();
-        applicationConfig.setName("bootstrap-provider");
+        applicationConfig.setName("bootstrap-provider2");
         applicationConfig.setDefault(true);
 
         //第一个提供者

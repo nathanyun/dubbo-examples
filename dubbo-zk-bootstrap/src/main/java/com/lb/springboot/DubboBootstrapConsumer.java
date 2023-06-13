@@ -25,13 +25,11 @@ public class DubboBootstrapConsumer {
         ApplicationModel applicationModel = ApplicationModel.defaultModel();
         application.setScopeModel(applicationModel);
 
-
         // 连接注册中心配置
         RegistryConfig registry = new RegistryConfig();
         registry.setAddress("zookeeper://127.0.0.1:2181");
 
-        // 注意：ReferenceConfig为重对象，内部封装了与注册中心的连接，以及与服务提供方的连接
-        // 引用远程服务
+        //注意：ReferenceConfig为重对象，内部封装了与注册中心的连接，以及与服务提供方的连接
         //引用远程服务配置
         ReferenceConfig<GreetingService> reference = new ReferenceConfig<>();
         //指定注册中心
@@ -46,8 +44,8 @@ public class DubboBootstrapConsumer {
         ArrayList<MethodConfig> methodConfigs = new ArrayList<>();
         MethodConfig methodConfig = new MethodConfig();
         methodConfig.setName("sayHi");
-        methodConfig.setTimeout(2000);
-        methodConfig.setRetries(2);
+        methodConfig.setTimeout(4000);//提供者service耗时2秒, Dubbo发布超时时间设置为3秒, 消费者设置为1秒超时
+        methodConfig.setRetries(2);//超时重试
         methodConfigs.add(methodConfig);
         reference.setMethods(methodConfigs);
 
@@ -59,10 +57,9 @@ public class DubboBootstrapConsumer {
         while (true){
             try {
                 TimeUnit.SECONDS.sleep(2);
-            }catch (InterruptedException e){
-            }
-            String result = greetingService.sayHi("Jackson");
-            System.out.println("result = " + result);
+                String result = greetingService.sayHi(reference.getApplication().getName());
+                System.out.println("result = " + result);
+            }catch (Exception ignored){ }
         }
 
     }

@@ -15,14 +15,18 @@
 ```text
 .
 ├── README.md
-├── pom.xml
-├── springboot-dubbo-zk-consumer
-├── springboot-dubbo-zk-interface
-└── springboot-dubbo-zk-provider
+├── dubbo-interface
+├── dubbo-zk-bootstrap
+├── dubbo-zk-springboot-annotation
+├── dubbo-zk-springboot-consumer
+├── dubbo-zk-springboot-provider
+└── pom.xml
 ```
-* springboot-dubbo-zk-interface //公共接口定义
-* springboot-dubbo-zk-provider //提供者服务
-* springboot-dubbo-zk-consumer //消费者服务
+* dubbo-interface //公共接口定义
+* dubbo-zk-bootstrap //bootstrapAPI服务
+* dubbo-zk-springboot-annotation //注解方式Dubbo服务
+* dubbo-zk-springboot-provider //springboot提供者服务
+* dubbo-zk-springboot-provider //springboot消费者服务
 
 ## 快速部署
 1.启动注册中心zk
