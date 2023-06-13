@@ -4,6 +4,7 @@ import com.lb.springboot.dto.Order;
 
 public interface OrderService {
 
+    String find();
 
     Order create(Order order);
 }

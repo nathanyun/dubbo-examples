@@ -11,11 +11,17 @@ import java.util.Date;
 @Slf4j
 public class OrderServiceImpl implements OrderService {
     @Override
+    public String find() {
+        System.out.println("Order find ===>");
+        return "ok";
+    }
+
+    @Override
     public Order create(Order order) {
-        log.info("OrderServiceImpl create ...");
+        System.out.println("Order create ===>" + order);
         return new Order().id(order.id())
                 .productName("iPhone17")
                 .date(new Date())
-                .amount(BigDecimal.valueOf(Math.random()).setScale(2, RoundingMode.UP));
+                .amount(BigDecimal.TEN);
     }
 }
