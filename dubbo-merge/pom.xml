@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lb.dubbo</groupId>
+        <artifactId>dubbo-examples</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>dubbo-merge</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>Dubbo :: Merge</name>
+    <description>Dubbo分组聚合, 将多个服务提供者分组作为一个提供者进行访问.</description>
+
+    <modules>
+        <module>dubbo-merge-consumer</module>
+        <module>dubbo-merge-provider1</module>
+        <module>dubbo-merge-provider2</module>
+    </modules>
+
+    <properties>
+        <dubbo.version>3.2.2</dubbo.version>
+        <spring-boot.version>2.7.8</spring-boot.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Dubbo -->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-bom</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
+                <version>${dubbo.version}</version>
+                <type>pom</type>
+            </dependency>
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>
