@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+package com.lb.dubbo.proto;
+
+// 请求消息
+message GreeterRequest{
+  string name = 1;
+}
+
+// 响应消息
+message GreeterReply{
+  string message = 1;
+}
+
+//定义GRPC接口
+service GreeterService {
+
+  rpc greeterOneToOne(GreeterRequest) returns (GreeterReply);
+
+  rpc greeterOneToMany(GreeterRequest) returns (stream GreeterReply);
+
+  rpc greeterManyToOne(stream GreeterRequest) returns (GreeterReply);
+
+  rpc greeterManyToMany(stream GreeterRequest) returns (stream GreeterReply);
+
+}

@@ -1,0 +1,8 @@
+services:
+  reactorServer:
+    type: app
+    basedir: .
+    checkPorts:
+      - 2181
+      - 50052
+    mainClass: com.lb.dubbo.reactor.ReactorServer
