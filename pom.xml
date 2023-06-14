@@ -15,6 +15,7 @@
         <module>dubbo-quickstart</module>
         <module>dubbo-version</module>
         <module>dubbo-triple-reactor</module>
+        <module>dubbo-validation</module>
     </modules>
 
     <properties>
