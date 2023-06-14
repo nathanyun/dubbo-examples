@@ -17,8 +17,8 @@
     <dubbo:protocol name="dubbo" port="-1" accepts="200" payload="8388608"/>
 
     <!-- 定义实现类对应的 bean -->
-    <bean id="greetingsService" class="com.lb.springboot.service.impl.GreetingServiceImpl"/>
+    <bean id="greetingsService" class="com.lb.dubbo.service.impl.GreetingServiceImpl"/>
     <!-- 定义服务信息，引用上面的 bean -->
-    <dubbo:service interface="com.lb.springboot.service.GreetingService" ref="greetingsService"/>
+    <dubbo:service interface="com.lb.dubbo.service.GreetingService" ref="greetingsService"/>
 
 </beans>

@@ -26,12 +26,6 @@
     </properties>
 
     <dependencies>
-        <!--引入公共接口依赖-->
-        <dependency>
-            <groupId>com.lb.dubbo</groupId>
-            <artifactId>dubbo-interface</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <!-- dubbo -->
         <dependency>
             <groupId>org.apache.dubbo</groupId>

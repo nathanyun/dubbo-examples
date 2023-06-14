@@ -13,6 +13,6 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
     <!-- 定义订阅信息，Dubbo 会在 Spring Context 中创建对应的 bean -->
-    <dubbo:reference check="false" interface="com.lb.springboot.service.GreetingService"/>
+    <dubbo:reference check="false" interface="com.lb.dubbo.service.GreetingService"/>
 
 </beans>
