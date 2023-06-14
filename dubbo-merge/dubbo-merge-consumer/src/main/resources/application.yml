@@ -1,12 +1,8 @@
 dubbo:
   application:
-    name: springboot-dubbo-zk-consumer
-  protocol:
-    name: dubbo
-    port: -1
+    name: merge-consumer
+    qos-enable: false
   registry:
     address: zookeeper://${zookeeper.address:127.0.0.1}:2181
-  consumer:
-    check: false
 server:
-  port: 8802
+  port: -1

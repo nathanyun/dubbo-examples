@@ -1,9 +1,8 @@
 package com.lb.dubbo;
 
 import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
-import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * 服务提供者
@@ -11,11 +10,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
  */
 @EnableDubbo
 @SpringBootApplication
-public class ProviderApplication {
+public class MergeSpringBootProvider {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(ProviderApplication.class)
-                .web(WebApplicationType.SERVLET)
-                .run(args);
+        SpringApplication.run(MergeSpringBootProvider.class, args);
+        System.out.println("MergeSpringBootProvider started");
     }
 }

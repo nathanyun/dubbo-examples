@@ -18,8 +18,10 @@
 
     <modules>
         <module>dubbo-merge-consumer</module>
+        <module>dubbo-merge-consumer2</module>
         <module>dubbo-merge-provider1</module>
         <module>dubbo-merge-provider2</module>
+        <module>dubbo-merge-interface</module>
     </modules>
 
     <properties>
