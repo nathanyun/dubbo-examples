@@ -1,12 +1,9 @@
-# 基于springboot集成dubbo
+## 快速开始
 本项目是基于Dubbo官方文档顺序提供的对应参考程序，有需要的同学可以clone参考。
 ## Case Versions
  :tw-2705: JDK 1.8及以上
-
  :tw-2705: Apache dubbo 3.2.2
-
  :tw-2705: ZooKeeper 3.6.2
-
  :tw-2705: SpringBoot 2.7.8
 
 ## 项目介绍
@@ -20,7 +17,6 @@ dubbo-examples //根
 │   ├── dubbo-spring-boot //springboot开发
 │   ├── dubbo-spring-xml //spring XML开发
 ```
-
 
 ## FAQ
 1. 为什么把Dubbo端口配置成-1?
