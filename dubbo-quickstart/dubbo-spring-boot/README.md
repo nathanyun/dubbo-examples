@@ -10,6 +10,8 @@
 ├── dubbo-spring-boot-provider//springboot提供者服务
 └── pom.xml
 ```
+## 官方手册
+https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/spring-boot/
 
 ## 快速部署
 1.启动注册中心zk

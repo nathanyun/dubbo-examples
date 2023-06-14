@@ -1,6 +1,9 @@
 ## 快速开始
-本项目是基于Dubbo官方文档顺序提供的对应参考程序，有需要的同学可以clone参考。
-## Case Versions
+本项目包含多个子项目, 是基于Dubbo官方文档顺序提供的对应参考程序，建议认真看每个模块中的 README 文档说明.
+
+> tips: 每个README都有链接到Dubbo官方的说明文档地址
+
+## 版本说明
  :tw-2705: JDK 1.8及以上
  :tw-2705: Apache dubbo 3.2.2
  :tw-2705: ZooKeeper 3.6.2
@@ -29,7 +32,7 @@ dubbo-examples //根
 @Service 注解从 3.0 版本开始就已经废弃，改用 @DubboService，以区别于 Spring 的 @Service 注解,
 @Reference 注解从 3.0 版本开始就已经废弃，改用 @DubboReference，以区别于 Spring 的 @Reference 注解
 ```
-3. 为什么要用使用 Java Config 代替注解?
+3. 在API模式下, 为什么要用使用 Java Config 代替注解?
 ```java
 //Java Config 是 DubboService 或 DubboReference 的替代方式，对于有复杂配置需求的服务建议使用这种方式。
 //但是要注意!!! ServiceConfig为重对象，内部封装了与注册中心的连接，请自行缓存，否则可能造成内存和连接泄漏

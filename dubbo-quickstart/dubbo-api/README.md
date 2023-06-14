@@ -5,3 +5,6 @@
 ## 项目测试
 1. 导入IDEA运行 `DubboBootstrapProvider`的 `main`方法即可启动Dubbo服务提供者.
 2. 运行 `DubboBootstrapConsumer`的 `main`方法即可启动Dubbo服务消费者观察控制台日志即可.
+
+## 官方手册
+https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/quick-start/api/
