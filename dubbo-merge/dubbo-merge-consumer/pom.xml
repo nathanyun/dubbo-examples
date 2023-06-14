@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>dubbo-merge-consumer</artifactId>
-    <name>Dubbo Merge :: Consumer</name>
+    <name>Dubbo Merge :: SpringBoot Consumer</name>
     <description>Dubbo服务消费者</description>
 
     <dependencies>

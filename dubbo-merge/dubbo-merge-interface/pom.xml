@@ -10,7 +10,7 @@
     <artifactId>dubbo-merge-interface</artifactId>
     <packaging>jar</packaging>
 
-    <name>dubbo-merge-interface</name>
+    <name>Dubbo Merge :: Interface</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
