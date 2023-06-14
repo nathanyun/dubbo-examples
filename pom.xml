@@ -13,6 +13,7 @@
     <modules>
         <module>dubbo-merge</module>
         <module>dubbo-quickstart</module>
+        <module>dubbo-version</module>
     </modules>
 
     <properties>

@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: version-provider-02
+  protocol:
+    name: dubbo
+    port: 20882
+  registry:
+    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+server:
+  port: 8002
