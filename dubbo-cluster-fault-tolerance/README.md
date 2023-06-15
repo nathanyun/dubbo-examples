@@ -27,29 +27,18 @@ dubbo-cluster-fault-tolerance 是 Dubbo的一个高级特性:集群容错,整体
 ## 使用场景
 多个服务器部署同一集群中，运行同一应用程序，如果一台服务器出现故障，其他服务器将接管负载，确保应用程序对用户仍然可用。
 
-## 测试部署
+## 部署并测试
+
+### 部署步骤
 1. 启动provider-01 (直接通过springboot启动)
-```text
-2023-06-15 12:00:28.482  INFO 40938 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](fault-tolerance-provider-01) is ready.
-```
-
 2. 启动provider-02
-
 ```bash 
 # 指定端口和应用名, 避免端口冲突
 java -jar dubbo-cft-provider-1.0.0.jar --server.port=8002 --dubbo.application.name=fault-tolerance-provider-02
 ```
-```text
-2023-06-15 12:01:33.168  INFO 41201 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](fault-tolerance-provider-02) is ready.
-```
-
 3. 启动consumer (直接通过springboot启动, 首次访问后才会初始化 SpringDispatcherServlet)
-```text
-2023-06-15 12:31:41.083  INFO 41569 --- [           main] o.a.d.c.d.DefaultApplicationDeployer     :  [DUBBO] Dubbo Application[1.1](fault-tolerance-provider-01) is ready.
-```
 
-### 测试验证
-#### 验证failover模式
+### 验证failover模式
 访问浏览器 `http://localhost:8003/action/hi?name=lisi&second=3` 观察控制台
 * second=3是为了让提供者服务处理超时, 导致远程调用失败, 出发自动重试机制
 日志如下:
@@ -131,9 +120,6 @@ Start time: 132378967375690
 # 消费端应用直接返回报错
 2023-06-15 12:54:45.253  WARN 42260 --- [nio-8003-exec-1] o.a.d.r.proxy.InvokerInvocationHandler   :  [DUBBO] [Dubbo-Consumer] execute service com.lb.dubbo.service.OrderService#save cost 1045.969811 ms, this invocation almost (maybe already) timeout. Timeout: 1000ms
 ```
-
-
-
 
 ## 官方手册
 https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/fault-tolerent-strategy/
