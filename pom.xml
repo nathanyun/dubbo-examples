@@ -16,6 +16,7 @@
         <module>dubbo-version</module>
         <module>dubbo-triple-reactor</module>
         <module>dubbo-validation</module>
+        <module>dubbo-cluster-fault-tolerance</module>
     </modules>
 
     <properties>
