@@ -4,24 +4,15 @@
        xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
     <context:property-placeholder/>
 
     <!-- 应用名 -->
-    <dubbo:application name="dubbo-validation-provider"/>
+    <dubbo:application name="dubbo-validation-consumer"/>
 
     <!-- 注册中心地址 -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
 
-    <!--协议 accepts最大连接数,payload请求响应数据包大小限制-->
-    <dubbo:protocol name="dubbo" port="-1" />
-
-    <!-- 定义实现类对应的 bean -->
-    <bean id="userService" class="com.lb.dubbo.service.impl.UserServiceImpl"/>
-
-    <!-- 定义服务信息，引用上面的 bean
-    validation="true" 代表进行参数验证
-    -->
-    <dubbo:service interface="com.lb.dubbo.service.UserService" ref="userService" validation="true"/>
+    <!-- 定义订阅信息，Dubbo 会在 Spring Context 中创建对应的 bean -->
+    <dubbo:reference check="false" interface="com.lb.dubbo.service.UserService" validation="true"/>
 
 </beans>
