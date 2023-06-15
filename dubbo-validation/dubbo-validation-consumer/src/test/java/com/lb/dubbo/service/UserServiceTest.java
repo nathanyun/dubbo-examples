@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -33,5 +35,12 @@ public class UserServiceTest {
     public void saveFailTest(){
         UserDTO userDTO = new UserDTO();
         userService.save(userDTO);
+    }
+
+    @Test
+    public void betweenTest(){
+        LocalDateTime createTime = LocalDateTime.now();
+        LocalDateTime delayTime = createTime.plusHours(2).plusSeconds(1);
+        System.out.println("seconds = " + Duration.between(createTime, delayTime).getSeconds());
     }
 }

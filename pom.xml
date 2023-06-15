@@ -17,6 +17,7 @@
         <module>dubbo-triple-reactor</module>
         <module>dubbo-validation</module>
         <module>dubbo-cluster-fault-tolerance</module>
+        <module>dubbo-service-downgrade</module>
     </modules>
 
     <properties>
