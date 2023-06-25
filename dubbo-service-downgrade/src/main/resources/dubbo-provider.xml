@@ -8,10 +8,13 @@
 
 
     <!-- 应用名 -->
-    <dubbo:application name="springXML-provider"/>
+    <dubbo:application name="downgrade-provider"/>
 
     <!-- 注册中心地址 -->
     <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!--需要认证-->
+    <dubbo:provider token="true"/>
 
     <!--协议 accepts最大连接数,payload请求响应数据包大小限制-->
     <dubbo:protocol name="dubbo" port="-1"/>

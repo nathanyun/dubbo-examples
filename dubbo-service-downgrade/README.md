@@ -7,9 +7,13 @@ dubbo-service-downgrade 是 Dubbo的服务降级,是指服务在非正常情况�
 * 降级非核心业务的服务或接口，腾出系统资源，尽量保证核心业务的正常运行
 * 某上游基础服务超时或不可用时，执行能快速响应的降级预案，避免服务整体雪崩
 
+## 配置说明
+- `mock="[fail  force]return|throw xxxException"`
+- `fail` 或 `force` 关键字可选，表示调用失败或不调用强制执行 mock 方法，如果不指定关键字默认为 `fail`
+- `return` 表示指定返回结果，`throw` 表示抛出指定异常
 
-## 测试部署
-### 测试 `fail:return null`
+## 三 测试部署
+### 3.1 测试 `fail:return null`
 1. 启动 `ServiceDowngradeClient`
 2. `dubbo-consumer.xml`配置如下:
     ```xml
@@ -77,8 +81,33 @@ dubbo-service-downgrade 是 Dubbo的服务降级,是指服务在非正常情况�
     ## 打印的响应结果, 调用失败返回空值
     Receive message ===> null
     ```
+   
+### 3.2 测试指定mock代理类方式 
+场景:调用远程服务超时, 触发mock
 
-
+1. 消费端编写并配置mock代理类
+   ```xml 
+   <dubbo:reference id="greetingService"
+                    interface="com.lb.dubbo.service.GreetingService"
+                    mock="com.lb.dubbo.service.GreetingServiceMock" />
+   ```
+   (一般mock实现建议在消费端编写)
+2. 运行测试用例
+   ```java
+       @Autowired
+       @Qualifier("greetingService")
+       private GreetingService greetingService;
+       @Test
+       public void testMock() {
+           String response = greetingService.sayHi("world");
+           System.out.println("response = " + response);
+       }
+   ```
+3. 观察控制台
+   ```text
+   response = Hi, world ! Power by Consumer Service Downgrade Mock
+   ```
+   
 
 ## 官方手册
 https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/service-downgrade/
