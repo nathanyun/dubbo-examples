@@ -12,13 +12,18 @@
 ## 项目介绍
 整体项目结构:
 ```text
-dubbo-examples //根
-├── dubbo-merge //分组聚合
-├── dubbo-quickstart //快速入门
-│   ├── dubbo-annotation //注解
-│   ├── dubbo-api //DUBBO API开发
-│   ├── dubbo-spring-boot //springboot开发
-│   ├── dubbo-spring-xml //spring XML开发
+.
+├── README.md
+├── dubbo-async //异步调用
+├── dubbo-cluster-fault-tolerance//集群容错
+├── dubbo-merge//分组聚合
+├── dubbo-quickstart//快速入门(DubboAPI,注解,springboot,springXML)
+├── dubbo-service-downgrade//服务降级
+├── dubbo-triple-reactor//响应式编程
+├── dubbo-validation//参数校验
+├── dubbo-version//服务版本
+└── pom.xml
+
 ```
 
 ## FAQ
