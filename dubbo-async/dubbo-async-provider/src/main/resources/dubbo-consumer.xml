@@ -7,22 +7,16 @@
     <context:property-placeholder/>
 
     <!-- 应用名 -->
-    <dubbo:application name="downgrade-consumer"/>
+    <dubbo:application name="async-simple-consumer"/>
 
     <!-- 注册中心地址 check="false" 代表关闭注册中心启动时检查-->
     <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"/>
 
-    <!-- 定义订阅信息，Dubbo 会在 Spring Context 中创建对应的 bean
-    mock="fail:return null" 调用失败会返回null
-    mock="force:throw java.lang.NullPointException" 强制抛出异常
-    其中 fail和force是可选的,默认是fail
-    -->
-    <dubbo:reference id="greetingService1" check="false" interface="com.lb.dubbo.service.GreetingService" timeout="5000" mock="fail:return null"/>
+    <!-- 定义订阅信息，Dubbo 会在 Spring Context 中创建对应的 bean -->
+    <dubbo:reference id="greetingService" interface="com.lb.dubbo.service.GreetingService" timeout="10000"/>
 
-    <!--指定远程调用服务的mock代理类 -->
-    <dubbo:reference id="greetingService"
-                     timeout="1000"
-                     retries="1"
-                     interface="com.lb.dubbo.service.GreetingService"
-                     mock="com.lb.dubbo.service.GreetingServiceMock" />
+    <!--异步服务, 使用RpcContext实现消费端异步调用-->
+    <dubbo:reference id="asyncService" interface="com.lb.dubbo.service.GreetingService">
+        <dubbo:method name="sayHello" async="true" timeout="10000"/>
+    </dubbo:reference>
 </beans>

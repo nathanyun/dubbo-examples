@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
     <name>Dubbo :: Async Provider</name>
-    <description>Dubbo提供者异步化</description>
+    <description>Dubbo提供者异步化, 暂未实现</description>
 
     <properties>
         <java.version>1.8</java.version>

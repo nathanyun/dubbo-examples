@@ -1,13 +1,21 @@
 package com.lb.dubbo.service;
 
-/**
- * 功能描述: <br/>
- *
- * @author yunnasheng
- * @date: 2020-12-30 17:06<br/>
- * @since JDK 1.8
- */
+import java.util.concurrent.CompletableFuture;
+
+
 public interface GreetingService {
 
-    String sayHi(String name);
+    /**
+     * CompletableFuture接口
+     * @param name
+     * @return
+     */
+    CompletableFuture<String> sayHi(String name);
+
+    /**
+     * 普通接口, 使用AsyncContext实现异步
+     * @param name
+     * @return
+     */
+    String sayHello(String name);
 }
