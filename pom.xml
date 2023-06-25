@@ -11,6 +11,7 @@
     <description>公共依赖版本管理</description>
 
     <modules>
+        <module>dubbo-async</module>
         <module>dubbo-merge</module>
         <module>dubbo-quickstart</module>
         <module>dubbo-version</module>

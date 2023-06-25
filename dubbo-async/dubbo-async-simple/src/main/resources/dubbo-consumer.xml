@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder/>
+
+    <!-- 应用名 -->
+    <dubbo:application name="async-simple-consumer"/>
+
+    <!-- 注册中心地址 check="false" 代表关闭注册中心启动时检查-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"/>
+
+    <!-- 定义订阅信息，Dubbo 会在 Spring Context 中创建对应的 bean -->
+    <dubbo:reference id="greetingService" interface="com.lb.dubbo.service.GreetingService" timeout="10000"/>
+
+    <!--异步服务, 使用RpcContext实现消费端异步调用-->
+    <dubbo:reference id="asyncService" interface="com.lb.dubbo.service.GreetingService">
+        <dubbo:method name="sayHello" async="true" timeout="10000"/>
+    </dubbo:reference>
+</beans>
