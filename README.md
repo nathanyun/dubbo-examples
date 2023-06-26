@@ -4,10 +4,10 @@
 > Tips: 每个README详细介绍了Dubbo特性说明, 使用场景, 以及相关部署测试的说明, 另外还附有Dubbo官方手册地址
 
 ## 版本说明
- :tw-2705: JDK 1.8及以上
- :tw-2705: Apache dubbo 3.2.2
- :tw-2705: ZooKeeper 3.6.2
- :tw-2705: SpringBoot 2.7.8
+-  JDK 1.8及以上
+-  Apache dubbo 3.2.2
+-  ZooKeeper 3.6.2
+-  SpringBoot 2.7.8
 
 ## 项目介绍
 整体项目结构:
