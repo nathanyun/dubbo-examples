@@ -19,6 +19,7 @@
 ├── dubbo-merge//分组聚合
 ├── dubbo-quickstart//快速入门(DubboAPI,注解,springboot,springXML)
 ├── dubbo-service-downgrade//服务降级
+├── dubbo-thread-pool-isolation//线程池隔离
 ├── dubbo-triple-reactor//响应式编程
 ├── dubbo-validation//参数校验
 ├── dubbo-version//服务版本

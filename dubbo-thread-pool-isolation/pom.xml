@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.lb.dubbo</groupId>
+        <artifactId>dubbo-examples</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>dubbo-thread-pool-isolation</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Dubbo :: Thread Pool Isolation</name>
+    <description>Dubbo 线程池隔离</description>
+
+    <modules>
+        <module>dubbo-thread-pool-isolation-api</module>
+        <module>dubbo-thread-pool-isolation-annotation</module>
+        <module>dubbo-thread-pool-isolation-springxml</module>
+    </modules>
+
+</project>

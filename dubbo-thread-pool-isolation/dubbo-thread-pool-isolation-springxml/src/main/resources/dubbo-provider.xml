@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder/>
+
+
+    <!-- 应用名
+    executor-management-mode="isolation" 指定为线程池隔离
+    -->
+    <dubbo:application name="isolation-springXml-provider" executor-management-mode="isolation"/>
+
+    <!--对外暴露dubbo协议和tri协议-->
+    <dubbo:protocol name="dubbo" port="-1"/>
+    <dubbo:protocol name="tri" port="-1"/>
+
+    <!-- 注册中心地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:metadata-report address="zookeeper://127.0.0.1:2181"/>
+
+    <!--需要认证-->
+    <dubbo:provider token="true"/>
+
+    <!-- 定义实现类对应的 bean -->
+    <bean id="greetingsService" class="com.lb.dubbo.service.impl.GreetingServiceImpl"/>
+    <bean id="orderService" class="com.lb.dubbo.service.impl.OrderServiceImpl"/>
+    <bean id="orderServiceV2" class="com.lb.dubbo.service.impl.OrderServiceImpl"/>
+
+    <!--自定义线程池1-->
+    <bean id="greetingServiceExecutor" class="com.lb.dubbo.config.GreetingServiceExecutor">
+        <constructor-arg name="corePoolSize" value="2"/>
+        <constructor-arg name="maximumPoolSize" value="5"/>
+        <constructor-arg name="keepAliveTime" value="30"/><!--单位秒-->
+        <constructor-arg name="queueLength" value="15"/>
+    </bean>
+
+    <!--自定义线程池2-->
+    <bean id="orderServiceExecutor" class="com.lb.dubbo.config.OrderServiceExecutor">
+        <constructor-arg name="corePoolSize" value="2"/>
+        <constructor-arg name="maximumPoolSize" value="5"/>
+        <constructor-arg name="keepAliveTime" value="30"/><!--单位秒-->
+        <constructor-arg name="queueLength" value="15"/>
+    </bean>
+
+    <!-- 暴露dubbo服务 -->
+    <dubbo:service interface="com.lb.dubbo.service.GreetingService" version="1.0.0" group="Group1" ref="greetingsService" timeout="60000" protocol="dubbo,tri" executor="greetingServiceExecutor"/>
+    <dubbo:service interface="com.lb.dubbo.service.OrderService" version="1.0.0" group="Group2" ref="orderService" timeout="60000" protocol="dubbo,tri" executor="orderServiceExecutor"/>
+    <!--不指定自定义线程池, 走系统默认线程池-->
+    <dubbo:service interface="com.lb.dubbo.service.OrderService" version="2.0.0" group="Group3" ref="orderServiceV2" timeout="60000" protocol="dubbo,tri"/>
+
+</beans>

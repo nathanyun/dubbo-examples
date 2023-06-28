@@ -1,0 +1,16 @@
+dubbo:
+  application:
+    name: isolation-annotation-server
+    executor-management-mode: isolation
+  registry:
+    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+    id: zk-registry
+  consumer:
+    check: off
+  config-center:
+    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+  metadata-report:
+    address: zookeeper://${zookeeper.address:127.0.0.1}:2181
+
+server:
+  port: 8803

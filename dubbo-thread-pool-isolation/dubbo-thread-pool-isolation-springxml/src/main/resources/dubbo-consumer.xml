@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder/>
+
+    <!-- 应用名 -->
+    <dubbo:application name="isolation-springXml-consumer"/>
+
+    <!-- 注册中心地址 check="false" 代表关闭注册中心启动时检查-->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" check="false"/>
+
+    <dubbo:reference id="greetingService" interface="com.lb.dubbo.service.GreetingService" version="1.0.0" group="Group1" protocol="dubbo"/>
+    <dubbo:reference id="orderService" interface="com.lb.dubbo.service.OrderService" version="1.0.0" group="Group2" protocol="dubbo" timeout="60000"/>
+    <dubbo:reference id="orderServiceV2" interface="com.lb.dubbo.service.OrderService" version="2.0.0" group="Group3" protocol="tri"/>
+</beans>

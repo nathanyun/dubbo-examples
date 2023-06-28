@@ -17,6 +17,7 @@
         <module>dubbo-merge</module>
         <module>dubbo-quickstart</module>
         <module>dubbo-service-downgrade</module>
+        <module>dubbo-thread-pool-isolation</module>
         <module>dubbo-triple-reactor</module>
         <module>dubbo-validation</module>
         <module>dubbo-version</module>
