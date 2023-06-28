@@ -1,40 +1,48 @@
 package com.lb.dubbo;
 
-import com.lb.dubbo.service.GreetingService;
-import org.apache.dubbo.rpc.RpcContext;
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.rpc.service.GenericService;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.locks.LockSupport;
+import java.util.function.BiConsumer;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:dubbo-consumer.xml"})
 public class GenericAppTest {
+
+    private static GenericService genericService;
 
     /**
      * 服务端定义异步接口, 消费端异步调用
      */
-    @Test
-    public void simpleAsyncCallTest(){
-        // 调用直接返回CompletableFuture
+    public static void main(String[] args) {
+        //应用配置
+        ApplicationConfig applicationConfig = new ApplicationConfig("generic-call-consumer");
+        applicationConfig.setRegistry(new RegistryConfig("zookeeper://127.0.0.1:2181"));
 
+        //接口配置
+        ReferenceConfig<GenericService> referenceConfig = new ReferenceConfig<>();
+        referenceConfig.setInterface("com.lb.dubbo.service.GreetingService");
+        referenceConfig.setApplication(applicationConfig);
+        referenceConfig.setGeneric("true");
+        referenceConfig.setAsync(true);
+        referenceConfig.setTimeout(4000);
 
-        CompletableFuture<String> future = greetingService.sayHi("async call");
+        //获取远程调用接口
+        genericService = referenceConfig.get();
+
+        CompletableFuture<Object> future = genericService.$invokeAsync("sayHi", new String[]{"java.lang.String"}, new Object[]{"world"});
         // 增加回调
-        future.whenComplete((result, exception) -> {
-            if (exception == null) {
-                System.out.println(LocalDateTime.now() + " - Response: " + result);
-            } else {
-                exception.printStackTrace();
+        future.whenComplete(new BiConsumer<Object, Throwable>() {
+            @Override
+            public void accept(Object result, Throwable throwable) {
+                if (throwable == null) {
+                    System.out.println(LocalDateTime.now() + " - Response: " + result);
+                } else {
+                    throwable.printStackTrace();
+                }
             }
         });
         // 早于结果输出
@@ -43,50 +51,4 @@ public class GenericAppTest {
         LockSupport.parkNanos(5000000000L);
     }
 
-    /**
-     * 利用RpcContext实现消费端异步
-     */
-    @Test
-    public void rpcContextTest(){
-        // 此调用会立即返回null
-        String result = asyncService.sayHello("RpcContext");
-        System.out.println(LocalDateTime.now() + " - Executed first response: " + result);
-
-        // 拿到调用的Future引用，当结果返回后，会被通知和设置到此Future
-        CompletableFuture<String> helloFuture = RpcContext.getServiceContext().getCompletableFuture();
-        // 为Future添加回调
-        helloFuture.whenComplete((retValue, exception) -> {
-            if (exception == null) {
-                System.out.println(LocalDateTime.now() + " - Response: " + retValue);
-            } else {
-                exception.printStackTrace();
-            }
-        });
-        // 早于结果输出
-        System.out.println(LocalDateTime.now() + " - Executed before response return.");
-        //阻塞等待5秒
-        LockSupport.parkNanos(5000000000L);
-    }
-
-    /**
-     * 另一种消费端异步写法
-     * @throws ExecutionException
-     * @throws InterruptedException
-     */
-    @Test
-    public void rpcContextTest2() throws ExecutionException, InterruptedException {
-        CompletableFuture<Object> future = RpcContext.getServiceContext().asyncCall(new Callable<Object>() {
-            @Override
-            public Object call() throws Exception {
-                // 此调用会立即返回null
-                String result = asyncService.sayHello("RpcContext");
-                System.out.println(LocalDateTime.now() + " - Executed first response: " + result);
-                return result;
-            }
-        });
-        // 早于结果输出
-        System.out.println(LocalDateTime.now() + " - Executed before response return." );
-        //阻塞等待结果
-        System.out.println(LocalDateTime.now() + " - Response: " + future.get());
-    }
 }
