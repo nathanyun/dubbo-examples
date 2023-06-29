@@ -1,5 +1,5 @@
 ## 快速开始
-本项目是基于Dubbo官方文档提供的对应参考程序，补充了apache/dubbo-samples中没有包含的特性案例演示，建议认真看每个模块中的 README 说明.
+本项目是基于Dubbo官方文档提供的对应参考程序，补充了[apache/dubbo-samples](https://github.com/apache/dubbo-samples)中没有包含的特性案例演示，建议认真看每个模块中的 README 说明.
 
 > Tips: 每个README详细介绍了Dubbo特性说明,使用场景, 相关部署测试的说明, 附有Dubbo官方手册地址
 
