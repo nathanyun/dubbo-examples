@@ -16,6 +16,7 @@
         <module>dubbo-cluster-fault-tolerance</module>
         <module>dubbo-generic</module>
         <module>dubbo-merge</module>
+        <module>dubbo-notify</module>
         <module>dubbo-quickstart</module>
         <module>dubbo-service-downgrade</module>
         <module>dubbo-specify-ip</module>

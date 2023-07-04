@@ -15,7 +15,9 @@
 ├── dubbo-async //异步调用
 ├── dubbo-attachment //链路调用传递隐式参数
 ├── dubbo-cluster-fault-tolerance//集群容错
+├── dubbo-generic//泛化调用
 ├── dubbo-merge//分组聚合
+├── dubbo-notify//远程调用触发事件通知
 ├── dubbo-quickstart//快速入门(DubboAPI,注解,springboot,springXML)
 ├── dubbo-service-downgrade//服务降级
 ├── dubbo-specify-pi//指定IP访问, 一致性哈希选址

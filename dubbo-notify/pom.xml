@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lb.dubbo</groupId>
+    <artifactId>dubbo-notify</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+
+    <name>Dubbo :: Notify</name>
+    <description>Dubbo 出发事件通知</description>
+
+    <modules>
+        <module>dubbo-notify-annotation</module>
+        <module>dubbo-notify-api</module>
+        <module>dubbo-notify-spring-boot</module>
+        <module>dubbo-notify-spring-xml</module>
+    </modules>
+</project>
