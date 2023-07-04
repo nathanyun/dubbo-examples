@@ -7,7 +7,10 @@ import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.rpc.cluster.specifyaddress.Address;
 import org.apache.dubbo.rpc.cluster.specifyaddress.UserSpecifiedAddressUtil;
 
-public class Consumer {
+/**
+ * 指定IP端口调用提供者
+ */
+public class SpecifyConsumer {
 
     public static void main(String[] args) {
 
