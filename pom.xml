@@ -12,11 +12,13 @@
 
     <modules>
         <module>dubbo-async</module>
+        <module>dubbo-attachment</module>
         <module>dubbo-cluster-fault-tolerance</module>
         <module>dubbo-generic</module>
         <module>dubbo-merge</module>
         <module>dubbo-quickstart</module>
         <module>dubbo-service-downgrade</module>
+        <module>dubbo-specify-ip</module>
         <module>dubbo-thread-pool-isolation</module>
         <module>dubbo-triple-reactor</module>
         <module>dubbo-validation</module>
