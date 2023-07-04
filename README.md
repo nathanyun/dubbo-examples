@@ -1,7 +1,5 @@
 ## 快速开始
-本项目包含多个子项目, 是基于Dubbo官方文档顺序提供的对应参考程序，建议认真看每个模块中的 README 文档说明.
-
-> Tips: 每个README详细介绍了Dubbo特性说明, 使用场景, 以及相关部署测试的说明, 另外还附有Dubbo官方手册地址
+本项目是基于Dubbo官方文档提供的对应参考程序，补充了[apache/dubbo-samples](https://github.com/apache/dubbo-samples)中没有包含的特性案例演示，建议认真看每个模块中的 README 说明.
 
 ## 版本说明
 -  JDK 1.8及以上
@@ -15,6 +13,7 @@
 .
 ├── README.md
 ├── dubbo-async //异步调用
+├── dubbo-attachment //链路调用传递隐式参数
 ├── dubbo-cluster-fault-tolerance//集群容错
 ├── dubbo-merge//分组聚合
 ├── dubbo-quickstart//快速入门(DubboAPI,注解,springboot,springXML)
