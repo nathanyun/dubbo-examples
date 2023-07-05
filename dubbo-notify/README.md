@@ -1,5 +1,5 @@
 # 调用触发事件通知
-> 说明: 官方案例仅有注解方式, 这里补充了XML, API,springboot方式的实现
+> 说明: 官方案例仅有注解方式, 这里补充了XML, API方式的实现
 ## 特性说明
 在调用之前、调用之后、出现异常时，会触发 oninvoke、onreturn、onthrow 三个事件，可以配置当事件发生时，通知哪个类的哪个方法。
 
@@ -24,7 +24,7 @@
   ```
   
 - 2.消费端远程调用
-  - 2.1 springboot 注解方式
+  - 2.1 注解方式
   ```java
   @DubboReference(timeout = 6000, methods = @Method(name = "sayHi", oninvoke = "notifyServiceImpl.onInvoke", onreturn = "notifyServiceImpl.onReturn", onthrow = "notifyServiceImpl.onThrow"))
   private GreetingService greetingService;
@@ -38,6 +38,25 @@
       <!--指定sayHi方法的回调地址-->
       <dubbo:method name="sayHi" async="true" oninvoke="notifyServiceImpl.onInvoke" onreturn = "notifyServiceImpl.onReturn" onthrow="notifyServiceImpl.onThrow" />
   </dubbo:reference>
+  ```
+  - 2.3 api方式
+  ```java
+  //通知服务
+  NotifyService notifyService = new NotifyServiceImpl();
+  //方法配置
+  ArrayList<MethodConfig> methodConfigs = new ArrayList<>();
+  MethodConfig methodConfig = new MethodConfig();
+  methodConfig.setName("sayHi");
+  methodConfig.setTimeout(6000);
+  //指定通知方法
+  methodConfig.setOninvoke(notifyService);
+  methodConfig.setOnreturn(notifyService);
+  methodConfig.setOnthrow(notifyService);
+  methodConfig.setOninvokeMethod("onInvoke");
+  methodConfig.setOnreturnMethod("onReturn");
+  methodConfig.setOnthrowMethod("onThrow");
+  methodConfigs.add(methodConfig);
+  reference.setMethods(methodConfigs);
   ```
 
 ## 测试流程

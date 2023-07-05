@@ -1,18 +1,18 @@
 package com.lb.dubbo;
 
 
-import com.lb.dubbo.dto.Order;
 import com.lb.dubbo.service.GreetingService;
-import com.lb.dubbo.service.OrderService;
+import com.lb.dubbo.service.NotifyService;
+import com.lb.dubbo.service.impl.NotifyServiceImpl;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.MethodConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
+import org.apache.dubbo.rpc.RpcContext;
 
-import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 public class DubboBootstrapConsumer {
 
@@ -26,58 +26,39 @@ public class DubboBootstrapConsumer {
         RegistryConfig registry = new RegistryConfig();
         registry.setAddress("zookeeper://127.0.0.1:2181");
 
-        //每隔2秒进行1次远程调用
-        while (true){
-            try {
-                TimeUnit.SECONDS.sleep(2);
-            }catch (Exception ignored){ }
-            //调用远程服务
-            referenceByGreeting(registry, application);
-            //调用远程服务
-            referenceByOrder(registry, application);
-        }
-    }
-
-    private static void referenceByGreeting(RegistryConfig registry, ApplicationConfig application){
-        //注意：ReferenceConfig为重对象，内部封装了与注册中心的连接，以及与服务提供方的连接
         //引用远程服务配置
         ReferenceConfig<GreetingService> reference = new ReferenceConfig<>();
-        //指定注册中心
         reference.setRegistry(registry);
-        //指定应用配置
         reference.setApplication(application);
-        //接口
         reference.setInterface(GreetingService.class);
         reference.setVersion("v1.0.0");
+
+        //通知服务
+        NotifyService notifyService = new NotifyServiceImpl();
 
         //方法级配置(可选)
         ArrayList<MethodConfig> methodConfigs = new ArrayList<>();
         MethodConfig methodConfig = new MethodConfig();
         methodConfig.setName("sayHi");
-        methodConfig.setTimeout(4000);//提供者service耗时2秒, Dubbo发布超时时间设置为3秒, 消费者设置为1秒超时
-        methodConfig.setRetries(2);//超时重试
+        methodConfig.setTimeout(6000);
+        methodConfig.setOninvoke(notifyService);
+        methodConfig.setOnreturn(notifyService);
+        methodConfig.setOnthrow(notifyService);
+        methodConfig.setOninvokeMethod("onInvoke");
+        methodConfig.setOnreturnMethod("onReturn");
+        methodConfig.setOnthrowMethod("onThrow");
         methodConfigs.add(methodConfig);
         reference.setMethods(methodConfigs);
 
-        //获取远程接口对象
-        //注意：此代理对象内部封装了所有通讯细节，对象较重，请缓存复用
+        //远程调用
         GreetingService greetingService = reference.get();
-        String result = greetingService.sayHi(reference.getApplication().getName());
-        System.out.println("result1 ===> " + result);
-    }
+        String start = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        System.out.println(start + "  准备请求远程调用...");
 
-    private static void referenceByOrder(RegistryConfig registry, ApplicationConfig application){
-        //引用远程服务配置
-        ReferenceConfig<OrderService> reference2 = new ReferenceConfig<>();
-        //指定注册中心
-        reference2.setRegistry(registry);
-        //指定应用配置
-        reference2.setApplication(application);
-        //接口
-        reference2.setInterface(OrderService.class);
-        reference2.setVersion("v1.0.0");
-        reference2.setGroup("qa");//若提供者指定了group,消费者这里必须制定对应的group,否则调用不到服务
-        Order result = reference2.get().create(new Order(1L,reference2.getUniqueServiceName(), BigDecimal.ONE, new Date()));
-        System.out.println("result2  ===>" + result);
+        //远程调用
+        String syncResult = greetingService.sayHi("tonny");
+        String end = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        System.out.println(end + "  sayHi result = " + syncResult);
+
     }
 }

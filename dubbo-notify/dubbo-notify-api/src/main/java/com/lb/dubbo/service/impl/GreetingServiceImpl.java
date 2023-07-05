@@ -2,15 +2,15 @@ package com.lb.dubbo.service.impl;
 
 import com.lb.dubbo.service.GreetingService;
 
-import java.util.concurrent.TimeUnit;
+import java.time.LocalDateTime;
 
 public class GreetingServiceImpl implements GreetingService {
     @Override
     public String sayHi(String name) {
-        System.out.println("sayHi ===> " + name);
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException ignored) { }
-        return String.format("Hello, %s ! power by Dubbo Bootstrap", name);
+        if (name.endsWith("2")){
+            throw new IllegalArgumentException("mock error");
+        }
+        System.out.println(LocalDateTime.now() + " Hi ===> " + name);
+        return String.format("Hi, %s ! Power by Dubbo Spring XML", name);
     }
 }

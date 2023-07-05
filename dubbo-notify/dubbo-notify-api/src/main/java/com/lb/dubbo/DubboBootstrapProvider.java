@@ -1,9 +1,7 @@
 package com.lb.dubbo;
 
-import com.lb.dubbo.service.impl.GreetingServiceImpl;
-import com.lb.dubbo.service.impl.OrderServiceImpl;
 import com.lb.dubbo.service.GreetingService;
-import com.lb.dubbo.service.OrderService;
+import com.lb.dubbo.service.impl.GreetingServiceImpl;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ConfigCenterConfig;
 import org.apache.dubbo.config.ProtocolConfig;
@@ -39,20 +37,12 @@ public class DubboBootstrapProvider {
         applicationConfig.setName("bootstrap-provider");
         applicationConfig.setDefault(true);
 
-        //第一个提供者
+        //提供者
         //注意!!! ServiceConfig为重对象，内部封装了与注册中心的连接，请自行缓存，否则可能造成内存和连接泄漏
         ServiceConfig<GreetingService> greeting = new ServiceConfig<>();
         greeting.setInterface(GreetingService.class);
         greeting.setRef(new GreetingServiceImpl());
         greeting.setVersion("v1.0.0");
-        greeting.setTimeout(3000);
-
-        //第二个提供者
-        ServiceConfig<OrderService> order = new ServiceConfig<>();
-        order.setInterface(OrderService.class);
-        order.setRef(new OrderServiceImpl());
-        order.setVersion("v1.0.0");
-        order.setGroup("qa");
 
         DubboBootstrap.getInstance()
                 .application(applicationConfig)//自定义应用名称
@@ -60,7 +50,6 @@ public class DubboBootstrapProvider {
                 .configCenter(configCenter)
                 .protocol(protocol)//统一协议
                 .service(greeting)
-                .service(order)
                 .start()//启动Dubbo
                 .await();//挂起等待, 防止进程退出
     }

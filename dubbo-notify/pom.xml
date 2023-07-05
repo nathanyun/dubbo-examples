@@ -12,7 +12,6 @@
     <description>Dubbo 出发事件通知</description>
 
     <modules>
-        <module>dubbo-notify-annotation</module>
         <module>dubbo-notify-api</module>
         <module>dubbo-notify-spring-boot</module>
         <module>dubbo-notify-spring-xml</module>
