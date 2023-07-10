@@ -20,9 +20,16 @@
     <dubbo:reference id="greetingService1" check="false" interface="com.lb.dubbo.service.GreetingService" timeout="5000" mock="fail:return null"/>
 
     <!--指定远程调用服务的mock代理类 -->
+    <dubbo:reference id="greetingService2"
+                     timeout="1000"
+                     retries="1"
+                     interface="com.lb.dubbo.service.GreetingService"
+                     mock="com.lb.dubbo.service.GreetingServiceMock"/>
+
+    <!--指定远程调用服务的stub代理类 -->
     <dubbo:reference id="greetingService"
                      timeout="1000"
                      retries="1"
                      interface="com.lb.dubbo.service.GreetingService"
-                     mock="com.lb.dubbo.service.GreetingServiceMock" />
+                     stub="com.lb.dubbo.service.GreetingServiceStub"/>
 </beans>

@@ -11,7 +11,7 @@ public class GreetingServiceImpl implements GreetingService {
         System.out.println(LocalDateTime.now() + " Hi ===> " + name);
 
         try {
-            TimeUnit.SECONDS.sleep(3);
+            TimeUnit.SECONDS.sleep(2);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
