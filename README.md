@@ -15,6 +15,7 @@
 ├── dubbo-async //异步调用
 ├── dubbo-attachment //链路调用传递隐式参数
 ├── dubbo-cluster-fault-tolerance//集群容错
+├── dubbo-echo-test//回声测试
 ├── dubbo-generic//泛化调用
 ├── dubbo-merge//分组聚合
 ├── dubbo-notify//远程调用触发事件通知
