@@ -7,10 +7,49 @@ dubbo-service-downgrade 是 Dubbo的服务降级,是指服务在非正常情况�
 * 降级非核心业务的服务或接口，腾出系统资源，尽量保证核心业务的正常运行
 * 某上游基础服务超时或不可用时，执行能快速响应的降级预案，避免服务整体雪崩
 
-## 配置说明
+## mock 配置说明
 - `mock="[fail  force]return|throw xxxException"`
 - `fail` 或 `force` 关键字可选，表示调用失败或不调用强制执行 mock 方法，如果不指定关键字默认为 `fail`
 - `return` 表示指定返回结果，`throw` 表示抛出指定异常
+## stub 本地存根配置说明
+```xml
+    <dubbo:reference id="greetingService"
+                     timeout="1000"
+                     retries="1"
+                     interface="com.lb.dubbo.service.GreetingService"
+                     stub="com.lb.dubbo.service.GreetingServiceStub"/><!--指定远程调用服务的stub代理类 -->
+```
+   stub本地存根实现
+   ```java
+   /**
+    * 本地存根
+    * <pre>Stub 必须有可传入 Proxy 的构造函数</pre>
+    * <pre>在 interface 旁边放一个 Stub 实现，它实现 BarService 接口，并有一个传入远程 BarService 实例的构造函数。</pre>
+    *
+    */
+   public class GreetingServiceStub implements GreetingService{
+   
+       private final GreetingService greetingService;
+   
+       // 构造函数传入真正的远程代理对象
+       public GreetingServiceStub(GreetingService greetingService) {
+           this.greetingService = greetingService;
+       }
+   
+       @Override
+       public String sayHi(String name) {
+           // 此代码在客户端执行, 你可以在客户端做ThreadLocal本地缓存，或预先验证参数是否合法，等等
+           System.out.printf("About to execute stub: [%s] \n", GreetingServiceStub.class.getSimpleName());
+           try {
+               //远程接口调用
+               return greetingService.sayHi(name);
+           }catch (Exception e){
+               // 你可以容错，可以做任何AOP拦截事项
+               return "容错数据";
+           }
+       }
+   }
+   ```
 
 ## 三 测试部署
 ### 3.1 测试 `fail:return null`
@@ -110,4 +149,5 @@ dubbo-service-downgrade 是 Dubbo的服务降级,是指服务在非正常情况�
    
 
 ## 官方手册
-https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/service-downgrade/
+本地伪装mock :https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/service-downgrade/
+本地存根stub: https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/local-stub/
