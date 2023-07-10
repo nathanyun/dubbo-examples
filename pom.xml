@@ -14,6 +14,7 @@
         <module>dubbo-async</module>
         <module>dubbo-attachment</module>
         <module>dubbo-cluster-fault-tolerance</module>
+        <module>dubbo-echo-test</module>
         <module>dubbo-generic</module>
         <module>dubbo-merge</module>
         <module>dubbo-notify</module>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:property-placeholder/>
+
+
+    <!-- 应用名 -->
+    <dubbo:application name="echo-provider"/>
+
+    <!-- 注册中心地址 -->
+    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+
+    <!--需要认证-->
+    <dubbo:provider token="true"/>
+
+    <!--协议 accepts最大连接数,payload请求响应数据包大小限制-->
+    <dubbo:protocol name="dubbo" port="-1"/>
+
+    <!-- 定义实现类对应的 bean -->
+    <bean id="greetingsService" class="com.lb.dubbo.service.impl.GreetingServiceImpl"/>
+    <!-- 定义服务信息，引用上面的 bean -->
+    <dubbo:service interface="com.lb.dubbo.service.GreetingService" ref="greetingsService"/>
+
+</beans>
