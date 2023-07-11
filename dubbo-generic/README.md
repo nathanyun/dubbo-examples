@@ -6,7 +6,20 @@ dubbo-generic 是 Dubbo泛化调用的特性, 是指在调用方没有服务方�
 * 网关服务：如果要搭建一个网关服务，那么服务网关要作为所有 RPC 服务的调用端。但是网关本身不应该依赖于服务提供方的接口 API（这样会导致每有一个新的服务发布，就需要修改网关的代码以及重新部署），所以需要泛化调用的支持。
 * 测试平台：如果要搭建一个可以测试 RPC 调用的平台，用户输入分组名、接口、方法名等信息，就可以测试对应的 RPC 服务。平台本身不应该依赖于服务提供方的接口 API。
 
-## 核心代码
+
+## 服务端泛化调用
+```java
+public class MyGenericService implements GenericService {
+ 
+    public Object $invoke(String methodName, String[] parameterTypes, Object[] args) throws GenericException {
+        if ("sayHello".equals(methodName)) {
+            return "Welcome " + args[0];
+        }
+    }
+}
+```
+
+## 客户端泛化调用
 ```java
 //引入泛化调用service接口
 import org.apache.dubbo.rpc.service.GenericService;
@@ -65,3 +78,4 @@ class A{
 
 ## 官方手册
 https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/generic-reference/
+https://cn.dubbo.apache.org/en/docs3-v2/java-sdk/advanced-features-and-usage/service/generic-service/

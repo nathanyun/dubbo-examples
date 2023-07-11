@@ -14,6 +14,7 @@
     <description>Dubbo 泛化调用</description>
 
     <modules>
+        <module>dubbo-generic-api</module>
         <module>dubbo-generic-springxml</module>
     </modules>
 
