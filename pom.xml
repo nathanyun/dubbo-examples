@@ -11,6 +11,7 @@
     <description>公共依赖版本管理</description>
 
     <modules>
+        <module>dubbo-accesslog</module>
         <module>dubbo-async</module>
         <module>dubbo-attachment</module>
         <module>dubbo-cluster-fault-tolerance</module>
